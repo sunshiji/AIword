@@ -1,0 +1,90 @@
+2026-04-22 21:49:16 - AIword - INFO - ==================================================
+2026-04-22 21:49:16 - AIword - INFO - AIword 启动中... 版本: 1.0.0
+2026-04-22 21:49:17 - AIword - INFO - 热键回调已注册: ctrl+alt+v
+2026-04-22 21:49:17 - AIword - INFO - AIword 已启动，正在运行中...
+2026-04-22 21:49:17 - AIword - INFO - 当前热键: ctrl+alt+v
+2026-04-22 21:49:17 - AIword - INFO - 提示: 点击系统托盘图标进行操作
+2026-04-22 21:49:17 - AIword - INFO - 启动系统托盘图标...
+2026-04-22 21:49:54 - AIword - INFO - 检测到热键按下
+2026-04-22 21:49:54 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 21:49:54 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 21:49:54 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 21:49:54 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 21:49:58 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 21:49:58 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 21:50:28 - AIword - INFO - 检测到热键按下
+2026-04-22 21:50:28 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 21:50:28 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 21:50:28 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 21:50:28 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 21:50:32 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 21:50:32 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 21:50:47 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 21:50:47 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 21:50:47 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 21:50:47 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 21:50:50 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 21:50:50 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 21:57:05 - AIword - INFO - 检测到热键按下
+2026-04-22 21:57:05 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 21:57:06 - AIword - INFO - 已启动新的 Word 实例
+2026-04-22 21:57:07 - AIword - INFO - 已连接到已运行的 WPS 实例
+2026-04-22 21:57:07 - AIword - INFO - 未检测到目标应用，执行动作: copy_to_clipboard
+2026-04-22 21:57:07 - AIword - INFO - 内容已复制到剪贴板
+2026-04-22 21:57:08 - AIword - INFO - 已显示通知: 操作完成 - 内容已复制到剪贴板
+2026-04-22 21:57:50 - AIword - INFO - 检测到热键按下
+2026-04-22 21:57:50 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 21:57:51 - AIword - INFO - 已启动新的 Word 实例
+2026-04-22 21:57:51 - AIword - INFO - 已连接到已运行的 WPS 实例
+2026-04-22 21:57:51 - AIword - INFO - 未检测到目标应用，执行动作: copy_to_clipboard
+2026-04-22 21:57:51 - AIword - INFO - 内容已复制到剪贴板
+2026-04-22 21:57:52 - AIword - INFO - 已显示通知: 操作完成 - 内容已复制到剪贴板
+2026-04-22 21:59:33 - AIword - INFO - 检测到热键按下
+2026-04-22 21:59:33 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 21:59:33 - AIword - INFO - 已启动新的 Word 实例
+2026-04-22 21:59:33 - AIword - INFO - 已连接到已运行的 WPS 实例
+2026-04-22 21:59:34 - AIword - INFO - 未检测到目标应用，执行动作: copy_to_clipboard
+2026-04-22 21:59:34 - AIword - INFO - 内容已复制到剪贴板
+2026-04-22 21:59:36 - AIword - INFO - 已显示通知: 操作完成 - 内容已复制到剪贴板
+2026-04-22 22:00:23 - AIword - INFO - 检测到热键按下
+2026-04-22 22:00:23 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 22:00:23 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:00:23 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:00:23 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 22:00:25 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 22:00:25 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 22:00:57 - AIword - INFO - 检测到热键按下
+2026-04-22 22:00:57 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 22:00:57 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:00:57 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:00:57 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 22:00:59 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 22:00:59 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 22:03:57 - AIword - INFO - 检测到热键按下
+2026-04-22 22:03:57 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 22:03:57 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:03:57 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:03:57 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 22:04:06 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 22:04:06 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 22:04:29 - AIword - INFO - 检测到热键按下
+2026-04-22 22:04:29 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 22:04:29 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:04:29 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:04:30 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 22:04:32 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 22:04:32 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 22:04:49 - AIword - INFO - 检测到热键按下
+2026-04-22 22:04:49 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 22:04:49 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:04:49 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:04:49 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 22:04:53 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 22:04:53 - AIword - INFO - 内容已成功插入到 Word/WPS
+2026-04-22 22:05:17 - AIword - INFO - 检测到热键按下
+2026-04-22 22:05:17 - AIword - INFO - 检测到内容类型: plain_text
+2026-04-22 22:05:17 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:05:17 - AIword - INFO - 已连接到已运行的 Word 实例
+2026-04-22 22:05:17 - AIword - INFO - 文本内容已成功插入到文档
+2026-04-22 22:05:21 - AIword - INFO - 已显示通知: 操作成功 - 内容已粘贴到 Word/WPS
+2026-04-22 22:05:21 - AIword - INFO - 内容已成功插入到 Word/WPS

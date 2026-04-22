@@ -1,0 +1,9 @@
+pywin32>=305
+pystray>=0.19.4
+Pillow>=9.5.0
+markdown>=3.4.3
+beautifulsoup4>=4.12.2
+lxml>=4.9.2
+pyperclip>=1.8.2
+keyboard>=0.13.5
+requests>=2.28.2
