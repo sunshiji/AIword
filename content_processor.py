@@ -10,7 +10,7 @@ from clipboard_manager import ClipboardManager
 from word_integration import WordIntegration
 from excel_integration import ExcelIntegration
 from notification_manager import NotificationManager
-from confirm_dialog import ConfirmAction, show_confirm_dialog
+from dialog_manager import get_dialog_manager, ConfirmAction
 
 
 class NoAppAction(Enum):
@@ -65,8 +65,9 @@ class ContentProcessor:
             excel_available = self.excel_integration.is_available()
             no_app_action = self.config_manager.get('no_app_action', 'copy_to_clipboard')
             
-            action = show_confirm_dialog(
-                logger=self.logger,
+            dm = get_dialog_manager(self.logger)
+            
+            action = dm.request_confirm_paste(
                 content=result['plain_text'] or content,
                 content_type=content_type,
                 html_content=result.get('html'),
