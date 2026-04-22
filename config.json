@@ -8,5 +8,6 @@
   "html_formatting": true,
   "keep_generated_files": false,
   "save_dir": "./output",
-  "log_dir": "./logs"
+  "log_dir": "./logs",
+  "confirm_before_paste": true
 }

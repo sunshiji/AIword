@@ -14,7 +14,8 @@ class ConfigManager:
         "html_formatting": True,
         "keep_generated_files": False,
         "save_dir": "./output",
-        "log_dir": "./logs"
+        "log_dir": "./logs",
+        "confirm_before_paste": True
     }
     
     def __init__(self, config_path: str = "config.json"):

@@ -10,23 +10,17 @@ class ExcelIntegration:
     def __init__(self, logger: Logger):
         self.logger = logger
     
-    def _get_excel_app(self):
+    def _get_running_excel_app(self):
         try:
             pythoncom.CoInitialize()
-            try:
-                app = win32com.client.GetActiveObject("Excel.Application")
-                self.logger.info("已连接到已运行的 Excel 实例")
-                return app
-            except:
-                app = win32com.client.Dispatch("Excel.Application")
-                app.Visible = True
-                self.logger.info("已启动新的 Excel 实例")
-                return app
+            app = win32com.client.GetActiveObject("Excel.Application")
+            self.logger.info("已连接到已运行的 Excel 实例")
+            return app
         except Exception as e:
-            self.logger.error(f"无法连接到 Excel: {str(e)}")
+            self.logger.debug(f"没有找到已运行的 Excel 实例: {str(e)}")
             return None
     
-    def _get_et_app(self):
+    def _get_running_et_app(self):
         try:
             pythoncom.CoInitialize()
             try:
@@ -34,48 +28,89 @@ class ExcelIntegration:
                 self.logger.info("已连接到已运行的 WPS 表格实例")
                 return app
             except:
-                try:
-                    app = win32com.client.GetActiveObject("Et.Application")
-                    self.logger.info("已连接到已运行的 WPS 表格实例")
-                    return app
-                except:
-                    app = win32com.client.Dispatch("KET.Application")
-                    app.Visible = True
-                    self.logger.info("已启动新的 WPS 表格实例")
-                    return app
+                app = win32com.client.GetActiveObject("Et.Application")
+                self.logger.info("已连接到已运行的 WPS 表格实例")
+                return app
         except Exception as e:
-            self.logger.error(f"无法连接到 WPS 表格: {str(e)}")
+            self.logger.debug(f"没有找到已运行的 WPS 表格实例: {str(e)}")
             return None
     
-    def get_active_workbook(self):
-        excel_app = self._get_excel_app()
+    def _start_excel_app(self):
+        try:
+            pythoncom.CoInitialize()
+            app = win32com.client.Dispatch("Excel.Application")
+            app.Visible = True
+            self.logger.info("已启动新的 Excel 实例")
+            return app
+        except Exception as e:
+            self.logger.error(f"无法启动 Excel: {str(e)}")
+            return None
+    
+    def _start_et_app(self):
+        try:
+            pythoncom.CoInitialize()
+            try:
+                app = win32com.client.Dispatch("KET.Application")
+                app.Visible = True
+                self.logger.info("已启动新的 WPS 表格实例")
+                return app
+            except:
+                app = win32com.client.Dispatch("Et.Application")
+                app.Visible = True
+                self.logger.info("已启动新的 WPS 表格实例")
+                return app
+        except Exception as e:
+            self.logger.error(f"无法启动 WPS 表格: {str(e)}")
+            return None
+    
+    def get_running_app(self):
+        excel_app = self._get_running_excel_app()
         if excel_app:
-            try:
-                return excel_app.ActiveWorkbook
-            except:
-                pass
-        
-        et_app = self._get_et_app()
+            return excel_app
+        et_app = self._get_running_et_app()
         if et_app:
+            return et_app
+        return None
+    
+    def start_app(self, prefer_et: bool = True):
+        if prefer_et:
+            et_app = self._start_et_app()
+            if et_app:
+                return et_app
+            excel_app = self._start_excel_app()
+            return excel_app
+        else:
+            excel_app = self._start_excel_app()
+            if excel_app:
+                return excel_app
+            et_app = self._start_et_app()
+            return et_app
+    
+    def get_active_workbook(self, allow_start: bool = False):
+        app = self.get_running_app()
+        
+        if not app and allow_start:
+            app = self.start_app()
+        
+        if app:
             try:
-                return et_app.ActiveWorkbook
-            except:
+                return app.ActiveWorkbook
+            except Exception as e:
+                self.logger.debug(f"获取活动工作簿失败: {str(e)}")
                 pass
         
         return None
     
     def is_available(self) -> bool:
-        return self.get_active_workbook() is not None
+        return self.get_running_app() is not None
     
-    def insert_csv(self, csv_content: str) -> bool:
+    def insert_csv(self, csv_content: str, allow_start: bool = False) -> bool:
         try:
-            workbook = self.get_active_workbook()
+            workbook = self.get_active_workbook(allow_start=allow_start)
             if not workbook:
-                excel_app = self._get_excel_app() or self._get_et_app()
-                if not excel_app:
+                if allow_start:
                     self.logger.warning("无法启动 Excel 或 WPS 表格")
-                    return False
-                workbook = excel_app.Workbooks.Add()
+                return False
             
             with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False, encoding='utf-8-sig') as f:
                 f.write(csv_content)
@@ -122,7 +157,10 @@ class ExcelIntegration:
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
             
-            excel_app = self._get_excel_app() or self._get_et_app()
+            excel_app = self.get_running_app()
+            if not excel_app:
+                excel_app = self.start_app()
+            
             if not excel_app:
                 self.logger.error("无法启动 Excel 或 WPS 表格")
                 return None

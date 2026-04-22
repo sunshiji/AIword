@@ -12,23 +12,17 @@ class WordIntegration:
         self.word_app = None
         self.wps_app = None
     
-    def _get_word_app(self):
+    def _get_running_word_app(self):
         try:
             pythoncom.CoInitialize()
-            try:
-                app = win32com.client.GetActiveObject("Word.Application")
-                self.logger.info("已连接到已运行的 Word 实例")
-                return app
-            except:
-                app = win32com.client.Dispatch("Word.Application")
-                app.Visible = True
-                self.logger.info("已启动新的 Word 实例")
-                return app
+            app = win32com.client.GetActiveObject("Word.Application")
+            self.logger.info("已连接到已运行的 Word 实例")
+            return app
         except Exception as e:
-            self.logger.error(f"无法连接到 Word: {str(e)}")
+            self.logger.debug(f"没有找到已运行的 Word 实例: {str(e)}")
             return None
     
-    def _get_wps_app(self):
+    def _get_running_wps_app(self):
         try:
             pythoncom.CoInitialize()
             try:
@@ -36,38 +30,81 @@ class WordIntegration:
                 self.logger.info("已连接到已运行的 WPS 实例")
                 return app
             except:
-                try:
-                    app = win32com.client.GetActiveObject("Wps.Application")
-                    self.logger.info("已连接到已运行的 WPS 实例")
-                    return app
-                except:
-                    app = win32com.client.Dispatch("Kwps.Application")
-                    app.Visible = True
-                    self.logger.info("已启动新的 WPS 实例")
-                    return app
+                app = win32com.client.GetActiveObject("Wps.Application")
+                self.logger.info("已连接到已运行的 WPS 实例")
+                return app
         except Exception as e:
-            self.logger.error(f"无法连接到 WPS: {str(e)}")
+            self.logger.debug(f"没有找到已运行的 WPS 实例: {str(e)}")
             return None
     
-    def get_active_document(self):
-        word_app = self._get_word_app()
+    def _start_word_app(self):
+        try:
+            pythoncom.CoInitialize()
+            app = win32com.client.Dispatch("Word.Application")
+            app.Visible = True
+            self.logger.info("已启动新的 Word 实例")
+            return app
+        except Exception as e:
+            self.logger.error(f"无法启动 Word: {str(e)}")
+            return None
+    
+    def _start_wps_app(self):
+        try:
+            pythoncom.CoInitialize()
+            try:
+                app = win32com.client.Dispatch("Kwps.Application")
+                app.Visible = True
+                self.logger.info("已启动新的 WPS 实例")
+                return app
+            except:
+                app = win32com.client.Dispatch("Wps.Application")
+                app.Visible = True
+                self.logger.info("已启动新的 WPS 实例")
+                return app
+        except Exception as e:
+            self.logger.error(f"无法启动 WPS: {str(e)}")
+            return None
+    
+    def get_running_app(self):
+        word_app = self._get_running_word_app()
         if word_app:
-            try:
-                return word_app.ActiveDocument
-            except:
-                pass
-        
-        wps_app = self._get_wps_app()
+            return word_app
+        wps_app = self._get_running_wps_app()
         if wps_app:
+            return wps_app
+        return None
+    
+    def start_app(self, prefer_wps: bool = True):
+        if prefer_wps:
+            wps_app = self._start_wps_app()
+            if wps_app:
+                return wps_app
+            word_app = self._start_word_app()
+            return word_app
+        else:
+            word_app = self._start_word_app()
+            if word_app:
+                return word_app
+            wps_app = self._start_wps_app()
+            return wps_app
+    
+    def get_active_document(self, allow_start: bool = False):
+        app = self.get_running_app()
+        
+        if not app and allow_start:
+            app = self.start_app()
+        
+        if app:
             try:
-                return wps_app.ActiveDocument
-            except:
+                return app.ActiveDocument
+            except Exception as e:
+                self.logger.debug(f"获取活动文档失败: {str(e)}")
                 pass
         
         return None
     
     def is_available(self) -> bool:
-        return self.get_active_document() is not None
+        return self.get_running_app() is not None
     
     def insert_html(self, html_content: str, move_cursor_to_end: bool = True) -> bool:
         try:
@@ -139,7 +176,10 @@ class WordIntegration:
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
             
-            word_app = self._get_word_app() or self._get_wps_app()
+            word_app = self.get_running_app()
+            if not word_app:
+                word_app = self.start_app()
+            
             if not word_app:
                 self.logger.error("无法启动 Word 或 WPS")
                 return None

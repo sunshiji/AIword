@@ -83,6 +83,9 @@ class SettingsWindow:
         self.vars['keep_generated_files'] = tk.BooleanVar()
         ttk.Checkbutton(options_frame, text="保留生成文件", variable=self.vars['keep_generated_files']).pack(anchor=tk.W)
         
+        self.vars['confirm_before_paste'] = tk.BooleanVar()
+        ttk.Checkbutton(options_frame, text="粘贴前确认（显示预览对话框）", variable=self.vars['confirm_before_paste']).pack(anchor=tk.W)
+        
         action_frame = ttk.LabelFrame(main_frame, text="无应用时动作", padding="10")
         action_frame.pack(fill=tk.X, pady=5)
         
@@ -129,6 +132,7 @@ class SettingsWindow:
         self.vars['move_cursor_to_end'].set(config.get('move_cursor_to_end', True))
         self.vars['html_formatting'].set(config.get('html_formatting', True))
         self.vars['keep_generated_files'].set(config.get('keep_generated_files', False))
+        self.vars['confirm_before_paste'].set(config.get('confirm_before_paste', True))
         self.vars['save_dir'].set(config.get('save_dir', './output'))
         
         action_value = config.get('no_app_action', 'copy_to_clipboard')
@@ -214,6 +218,7 @@ class SettingsWindow:
         self.config_manager.set('move_cursor_to_end', self.vars['move_cursor_to_end'].get())
         self.config_manager.set('html_formatting', self.vars['html_formatting'].get())
         self.config_manager.set('keep_generated_files', self.vars['keep_generated_files'].get())
+        self.config_manager.set('confirm_before_paste', self.vars['confirm_before_paste'].get())
         self.config_manager.set('no_app_action', action_value)
         self.config_manager.set('save_dir', self.vars['save_dir'].get())
         
