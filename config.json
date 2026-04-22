@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "hotkey": "ctrl+alt+v",
+  "hotkey_enabled": true,
+  "notification_enabled": true,
+  "no_app_action": "copy_to_clipboard",
+  "move_cursor_to_end": true,
+  "html_formatting": true,
+  "keep_generated_files": false,
+  "save_dir": "./output",
+  "log_dir": "./logs"
+}
